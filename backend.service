@@ -3,7 +3,7 @@ Description = Backend Service
 
 [Service]
 User=expense
-Environment=DB_HOST="18.234.232.121"
+Environment=DB_HOST="mysql.yamunadevops.online"
 ExecStart=/bin/node /app/index.js
 SyslogIdentifier=backend
 
