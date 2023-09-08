@@ -1,38 +1,35 @@
-source common.sh
-
 echo Placing NodeJS repo file
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash >>$log_file
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 echo Installing NOdeJS
-dnf install nodejs -y >>$log_file
+dnf install nodejs -y
 
 echo Copying backend.service file
-cp backend.service /etc/systemd/system/backend.service >>$log_file
+cp backend.service /etc/systemd/system/backend.service
 
 echo Adding Application user
-useradd expense >>$log_file
+useradd expense
 
 echo Removing old app content
-rm -rf /app >>$log_file
+rm -rf /app
 mkdir /app
 
 echo Downloading backend code
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip >>$log_file
-cd /app
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
 
 echo Extracting backend code
-unzip /tmp/backend.zip >>$log_file
+unzip /tmp/backend.zip
 
 echo Installing dependencies
-npm install >>$log_file
+npm install
 
 echo Staring backend service
-systemctl daemon-reload >>$log_file
-systemctl enable backend >>$log_file
-systemctl start backend >>$log_file
+systemctl daemon-reload
+systemctl enable backend
+systemctl start backend
 
 echo Installing MySQL client
-dnf install mysql -y >>$log_file
+dnf install mysql -y
 
 echo Load Schema
-mysql -h mysql.yamunadevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql >>$log_file
+mysql -h mysql.yamunadevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
