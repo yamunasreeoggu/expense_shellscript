@@ -17,6 +17,7 @@ mkdir /app
 echo Downloading backend code
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
 
+cd /app
 echo Extracting backend code
 unzip /tmp/backend.zip
 
