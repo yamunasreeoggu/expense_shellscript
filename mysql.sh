@@ -14,7 +14,7 @@ status_check
 
 echo Starting MySQL server
 systemctl enable mysqld &>>$log_file
-systemctl start mysqld &>>$log_file
+systemctl restart mysqld &>>$log_file
 status_check
 
 echo Setting root Password
